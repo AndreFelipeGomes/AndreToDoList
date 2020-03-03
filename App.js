@@ -1,40 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ColorPropType } from 'react-native';
 import 'react-native-gesture-handler';
-import { TextInput } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Authentication from './screens/screenAuthentication';
+import ScreenList from './screens/screenList';
 
 export default class MyComponent extends React.Component {
-  state = {
-    user: '',
-    password: '',
-    auth: false,
-  };
-
-  _validAuth = () => {
-    (this.state.user == 'ANDRE')?
-      (this.state.password == '123')? 
-       this.setState({auth : true})
-      :
-       this.setState({auth : false})
-    : 
-      this.setState({auth : false})
-  }
-  render(){
+  render() {
+    const Stack = createStackNavigator();
     return (
-      <Authentication>
-
-      </Authentication>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Authentication">
+          <Stack.Screen name="Authentication"
+            component={Authentication}
+            options={
+              {
+                title: 'Authentication',
+                headerStyle: {
+                  backgroundColor: '#fd7e14',
+                },
+                headerTintColor: '#fff',
+              }
+            } />
+            <Stack.Screen name="ScreenList"
+            component={ScreenList}
+            options={
+              {
+                title: 'ScreenList',
+                headerStyle: {
+                  backgroundColor: '#fd7e14',
+                },
+                headerTintColor: '#fff',
+              }
+            } />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    backgroundColor: 'rgb(34, 34, 34)',
-  },
-})
