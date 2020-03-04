@@ -7,8 +7,8 @@ import { TextInput } from 'react-native-paper';
 export default class Authentication extends React.Component {
     
     state = {
-        user: '',
-        password: '',
+        user: 'A',
+        password: 'A',
         auth: false,
     };
 
@@ -16,7 +16,10 @@ export default class Authentication extends React.Component {
         
         (this.state.user == 'A') ?
             (this.state.password == 'A') ?
-                this.props.navigation.navigate('ScreenList')
+                this.props.navigation.navigate('ScreenList',{
+                    itemId: 86,
+                    otherParam: 'anything you want here',
+                  })
                 :
                 this.setState({ auth: false })
             :
@@ -56,7 +59,6 @@ export default class Authentication extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         justifyContent: 'center',
         backgroundColor: 'rgb(34, 34, 34)',
     },

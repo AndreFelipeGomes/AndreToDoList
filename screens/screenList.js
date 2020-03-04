@@ -4,6 +4,21 @@ import { Text, IconButton, FAB } from 'react-native-paper';
 import 'react-native-gesture-handler';
 
 export default class ScreenList extends React.Component {
+    componentDidMount = () => {
+        //const params = JSON.stringify(this.props.navigation.getParam('itemId', 'NO-ID'))
+        console.log(this.props.navigation)
+        // this.setState({
+        //     list : [
+        //         {
+        //             name : params.name
+        //         },
+        //         {
+        //             name : params.name
+        //         }
+        //     ]
+        // })
+    }
+    
     state = {
         list: [
             {
@@ -14,6 +29,7 @@ export default class ScreenList extends React.Component {
             }
         ]
     }
+
     _PushOnStateList = () => {
         let list = this.state.list
         let object = { name: "suellen" }
@@ -25,23 +41,24 @@ export default class ScreenList extends React.Component {
             <SafeAreaView style={styles.container}>
                 <FlatList
                     data={this.state.list}
-                    renderItem={({ item, index }) =>
+                    renderItem={({ item }) =>
                         <View style={styles.item}>
                             <Text style={styles.title}>{item.name}</Text>
                             <IconButton
                                 icon="camera"
                                 color='orange'
                                 size={30}
-                                onPress={() => console.log('Pressed')}
+                                onPress={() => this._PushOnStateList()}
                             />
                         </View>}
-                    keyExtractor={(item , index) => index}
+                    keyExtractor={( item , index) => index}
                 />
                 <FAB
                     style={styles.fab}
-                    small
                     icon="plus"
-                    onPress={() => this._PushOnStateList()}
+                    color='white'
+                    // onPress={() => this._PushOnStateList()}
+                    onPress={() => this.props.navigation.navigate('AddToDoList')}
                 />
             </SafeAreaView>
         );
@@ -59,7 +76,7 @@ const styles = StyleSheet.create({
         justifyContent : 'space-between',
         alignItems : 'center',
         backgroundColor: '#343a40',
-        padding: 20,
+        padding: 7,
         marginVertical: 8,
         marginHorizontal: 16,
     },
@@ -71,5 +88,6 @@ const styles = StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 0,
+        backgroundColor: 'orange'
       },
 });

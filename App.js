@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ScreenList from './screens/screenList';
 import Authentication from './screens/screenAuthentication';
+import AddToDoList from './screens/screenAddToDoList';
 
 export default class MyComponent extends React.Component {
   render() {
@@ -27,6 +28,15 @@ export default class MyComponent extends React.Component {
             options={
               {
                 title: 'ScreenList',
+                headerStyle: xBackground,
+                headerTintColor: '#fff',
+              }
+            } />
+            <Stack.Screen name="AddToDoList"
+            component={AddToDoList}
+            options={
+              {
+                title: 'AddToDoList',
                 headerStyle: xBackground,
                 headerTintColor: '#fff',
               }
