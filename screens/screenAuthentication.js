@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-paper';
 
 
 export default class Authentication extends React.Component {
+    
     state = {
         user: '',
         password: '',
@@ -12,9 +13,10 @@ export default class Authentication extends React.Component {
     };
 
     _validAuth = () => {
-        (this.state.user == 'ANDRE') ?
-            (this.state.password == '123') ?
-                navigation.navigate('ScreenList')
+        
+        (this.state.user == 'A') ?
+            (this.state.password == 'A') ?
+                this.props.navigation.navigate('ScreenList')
                 :
                 this.setState({ auth: false })
             :

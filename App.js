@@ -1,25 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ColorPropType } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Authentication from './screens/screenAuthentication';
 import ScreenList from './screens/screenList';
+import Authentication from './screens/screenAuthentication';
 
 export default class MyComponent extends React.Component {
   render() {
     const Stack = createStackNavigator();
+    xBackground = { backgroundColor: '#fd7e14'}
+
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Authentication">
           <Stack.Screen name="Authentication"
-            component={Authentication}
+          component={Authentication}
             options={
               {
                 title: 'Authentication',
-                headerStyle: {
-                  backgroundColor: '#fd7e14',
-                },
+                headerStyle: xBackground,
                 headerTintColor: '#fff',
               }
             } />
@@ -28,9 +27,7 @@ export default class MyComponent extends React.Component {
             options={
               {
                 title: 'ScreenList',
-                headerStyle: {
-                  backgroundColor: '#fd7e14',
-                },
+                headerStyle: xBackground,
                 headerTintColor: '#fff',
               }
             } />
