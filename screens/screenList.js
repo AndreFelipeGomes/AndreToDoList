@@ -21,16 +21,26 @@ export default class ScreenList extends React.Component {
         list: [
             {
                 id: '1',
-                name: "andre"
+                name: "andre",
+                checked: false,
             },
             {
                 id: '2',
-                name: "suellen"
+                name: "suellen",
+                checked: false,
             }
         ]
     }
+    _changeChecked = (id,checked) => {
+        console.log(checked)
+        let list = this.state.list
+        list[id-1].checked = !checked
+        this.setState({
+            list: list,
+        })
+        // console.log(this.state.list)
+    }
     _addToDo = (name) => {
-        console.log(name)
         let list = this.state.list
         let nId = (list.length+1)
         nId = JSON.stringify(nId)
@@ -47,6 +57,7 @@ export default class ScreenList extends React.Component {
                     renderItem={({ item }) =>
                             <ToDo 
                                 _item={item}
+                                _changeChecked={this._changeChecked.bind(this)}
                             />
                     }
                     keyExtractor={(item) => item.id}

@@ -32,23 +32,29 @@ export default class AddToDoList extends React.Component {
         return (
             <Portal>
                 <Animated.View style={{flex: 1,backgroundColor: 'rgba(34,34,34,0.8)', opacity: this.state.opacity}}>
+                    <TouchableOpacity style={{flex:1}} onPress={() => this.props._changeState()}>
                     <View style={{
                             top: ((Math.round(Dimensions.get('window').height/2)-75)),//((Altura da tela/2)-(Altura do view/2))
                             height: 150,
+                            borderRadius: 5,
                             marginLeft: 10,
                             marginRight: 10,
-                            backgroundColor: '#fff',
+                            backgroundColor: '#6c757d',
                         }}>
-                        <TextInput
-                            style={styles.textInput}
-                            label='Descrição'
-                            value={this.state.descricaoToDo}
-                            onChangeText={descricaoToDo => this.setState({descricaoToDo})}
-                        />
+                        <View style={{flex:1}}>
+                            <TextInput
+                                style={styles.textInput}
+                                label='Descrição'
+                                value={this.state.descricaoToDo}
+                                onChangeText={descricaoToDo => this.setState({descricaoToDo})}
+                                multiline={true}
+                            />
+                        </View>
                         <TouchableOpacity style={styles.button} onPress={this._goBack}>
                             <Text>Adicionar</Text>
                         </TouchableOpacity>
                     </View>
+                    </TouchableOpacity>
                 </Animated.View>
             </Portal>
         );
@@ -64,7 +70,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     textInput: {
-        marginTop: 10,
+        flex: 1,
+        marginTop: 5,
         margin: 5,
     },
     button: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { TextInput, Portal, IconButton, Text } from 'react-native-paper';
+import { TextInput, Portal, IconButton, Text, Checkbox} from 'react-native-paper';
 import { StyleSheet, View, TouchableOpacity, Dimensions, Animated } from 'react-native';
 
 export default class ToDo extends React.Component {
@@ -22,6 +22,11 @@ export default class ToDo extends React.Component {
         ).start()
     }
 
+    _changeChecked = (id,checked) => {
+        console.log("aaa"+checked)
+        this.props._changeChecked(id,checked)
+    }
+
     render() {
         return (
             <Animated.View style={{
@@ -36,7 +41,13 @@ export default class ToDo extends React.Component {
                 marginHorizontal: 16,
                 right: this.state.moveToLeft,
             }}>
-                <Text style={styles.title}>{this.props._item.name}</Text>
+                <View style={{flex: 1, flexDirection:'row'}}>
+                    <Checkbox
+                        status={this.props._item.checked ? 'checked' : 'unchecked'}
+                        onPress={() => this._changeChecked(this.props._item.id, this.props._item.checked)}
+                    />
+                    <Text style={styles.title}>{this.props._item.name}</Text>
+                </View>
                 <IconButton
                     icon="camera"
                     color='orange'
