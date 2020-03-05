@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ScreenList from './screens/screenList';
 import Authentication from './screens/screenAuthentication';
 import AddToDoList from './screens/screenAddToDoList';
+import {Portal} from 'react-native-paper';
 
 export default class MyComponent extends React.Component {
   render() {
@@ -13,35 +14,37 @@ export default class MyComponent extends React.Component {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Authentication">
-          <Stack.Screen name="Authentication"
-          component={Authentication}
-            options={
-              {
-                title: 'Authentication',
-                headerStyle: xBackground,
-                headerTintColor: '#fff',
-              }
-            } />
-            <Stack.Screen name="ScreenList"
-            component={ScreenList}
-            options={
-              {
-                title: 'ScreenList',
-                headerStyle: xBackground,
-                headerTintColor: '#fff',
-              }
-            } />
-            <Stack.Screen name="AddToDoList"
-            component={AddToDoList}
-            options={
-              {
-                title: 'AddToDoList',
-                headerStyle: xBackground,
-                headerTintColor: '#fff',
-              }
-            } />
-        </Stack.Navigator>
+        <Portal.Host>
+          <Stack.Navigator initialRouteName="Authentication">
+            <Stack.Screen name="Authentication"
+            component={Authentication}
+              options={
+                {
+                  title: 'Authentication',
+                  headerStyle: xBackground,
+                  headerTintColor: '#fff',
+                }
+              } />
+              <Stack.Screen name="ScreenList"
+              component={ScreenList}
+              options={
+                {
+                  title: 'ScreenList',
+                  headerStyle: xBackground,
+                  headerTintColor: '#fff',
+                }
+              } />
+              <Stack.Screen name="AddToDoList"
+              component={AddToDoList}
+              options={
+                {
+                  title: 'AddToDoList',
+                  headerStyle: xBackground,
+                  headerTintColor: '#fff',
+                }
+              } />
+          </Stack.Navigator>
+        </Portal.Host>
       </NavigationContainer>
     );
   }

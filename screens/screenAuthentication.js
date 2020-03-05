@@ -9,7 +9,6 @@ export default class Authentication extends React.Component {
     state = {
         user: 'A',
         password: 'A',
-        auth: false,
     };
 
     _validAuth = () => {
@@ -28,14 +27,6 @@ export default class Authentication extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                    backgroundColor: (this.state.auth) ? "green" : "red",
-                }}>
-                    <Text>{JSON.stringify(this.state.auth)}</Text>
-                </View>
                 <TextInput
                     style={styles.textInput}
                     label='Usuario'

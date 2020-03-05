@@ -1,40 +1,43 @@
 import React from 'react';
-import { StyleSheet, View, SafeAreaView, FlatList } from 'react-native';
-import { Text, IconButton, FAB } from 'react-native-paper';
+import { StyleSheet, View, SafeAreaView, FlatList, Animated } from 'react-native';
+import { Text, IconButton, FAB, Portal } from 'react-native-paper';
 import 'react-native-gesture-handler';
+import AddToDoList from './screenAddToDoList';
+import ToDo from '../component/toDo';
 
 export default class ScreenList extends React.Component {
-    componentDidMount = () => {
-        //const params = JSON.stringify(this.props.navigation.getParam('itemId', 'NO-ID'))
-        console.log(this.props.navigation)
-        // this.setState({
-        //     list : [
-        //         {
-        //             name : params.name
-        //         },
-        //         {
-        //             name : params.name
-        //         }
-        //     ]
-        // })
+    constructor(props) {
+        super(props)
     }
-    
+
+    _changeState = () => {
+        this.setState({
+            adding: !this.state.adding,
+        })
+    }
+
     state = {
+        adding: false,
         list: [
             {
+                id: '1',
                 name: "andre"
             },
             {
+                id: '2',
                 name: "suellen"
             }
         ]
     }
-
-    _PushOnStateList = () => {
+    _addToDo = (name) => {
+        console.log(name)
         let list = this.state.list
-        let object = { name: "suellen" }
+        let nId = (list.length+1)
+        nId = JSON.stringify(nId)
+        let object = { name: name, id: nId}
+        console.log(nId)
         list.push(object)
-        this.setState({ list : list})
+        this.setState({ list: list })
     }
     render() {
         return (
@@ -42,23 +45,28 @@ export default class ScreenList extends React.Component {
                 <FlatList
                     data={this.state.list}
                     renderItem={({ item }) =>
-                        <View style={styles.item}>
-                            <Text style={styles.title}>{item.name}</Text>
-                            <IconButton
-                                icon="camera"
-                                color='orange'
-                                size={30}
-                                onPress={() => this._PushOnStateList()}
+                            <ToDo 
+                                _item={item}
                             />
-                        </View>}
-                    keyExtractor={( item , index) => index}
+                    }
+                    keyExtractor={(item) => item.id}
                 />
+                {
+                    this.state.adding ?
+                        <AddToDoList
+                            _changeState={this._changeState}
+                            _addToDo={this._addToDo.bind(this)}
+                        />
+                        :
+                        null
+                }
+
                 <FAB
                     style={styles.fab}
                     icon="plus"
                     color='white'
                     // onPress={() => this._PushOnStateList()}
-                    onPress={() => this.props.navigation.navigate('AddToDoList')}
+                    onPress={() => this.setState({ adding: true })}
                 />
             </SafeAreaView>
         );
@@ -71,11 +79,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(34, 34, 34)'
     },
     item: {
-        flex : 1,
-        flexDirection : 'row', 
-        justifyContent : 'space-between',
-        alignItems : 'center',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         backgroundColor: '#343a40',
+        borderRadius: 5,
         padding: 7,
         marginVertical: 8,
         marginHorizontal: 16,
@@ -89,5 +98,5 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         backgroundColor: 'orange'
-      },
+    },
 });
