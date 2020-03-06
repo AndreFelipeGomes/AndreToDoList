@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         margin: 5,
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 5,
     },
     textButton: {
         color: 'red'
