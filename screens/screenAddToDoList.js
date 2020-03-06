@@ -2,6 +2,8 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { TextInput, Portal } from 'react-native-paper'; 
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Animated } from 'react-native';
+import { SQLiteWrapper } from 'hpro-rn/';
+
 
 export default class AddToDoList extends React.Component {
     constructor(props){
@@ -47,7 +49,6 @@ export default class AddToDoList extends React.Component {
                                 label='Descrição'
                                 value={this.state.descricaoToDo}
                                 onChangeText={descricaoToDo => this.setState({descricaoToDo})}
-                                multiline={true}
                             />
                         </View>
                         <TouchableOpacity style={styles.button} onPress={this._goBack}>

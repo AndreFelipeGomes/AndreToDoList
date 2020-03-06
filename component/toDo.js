@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { TextInput, Portal, IconButton, Text, Checkbox} from 'react-native-paper';
-import { StyleSheet, View, TouchableOpacity, Dimensions, Animated } from 'react-native';
+import { TextInput, Portal, IconButton, Checkbox} from 'react-native-paper';
+import { StyleSheet, View, TouchableOpacity, Dimensions, Animated, Text } from 'react-native';
 
 export default class ToDo extends React.Component {
     constructor(props) {
@@ -16,14 +16,13 @@ export default class ToDo extends React.Component {
         Animated.spring(
             this.state.moveToLeft,
             {
-                toValue: 0,
+                toValue : 0,
                 duration: 1000,
             }
         ).start()
     }
 
     _changeChecked = (id,checked) => {
-        console.log("aaa"+checked)
         this.props._changeChecked(id,checked)
     }
 
@@ -43,7 +42,7 @@ export default class ToDo extends React.Component {
             }}>
                 <View style={{flex: 1, flexDirection:'row'}}>
                     <Checkbox
-                        status={this.props._item.checked ? 'checked' : 'unchecked'}
+                        status={(this.props._item.checked == 1) ? 'checked' : 'unchecked'}
                         onPress={() => this._changeChecked(this.props._item.id, this.props._item.checked)}
                     />
                     <Text style={styles.title}>{this.props._item.name}</Text>
@@ -78,6 +77,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
+        color:'#fff'
     },
     fab: {
         position: 'absolute',

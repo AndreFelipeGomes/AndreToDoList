@@ -4,50 +4,38 @@ import { Text, IconButton, FAB, Portal } from 'react-native-paper';
 import 'react-native-gesture-handler';
 import AddToDoList from './screenAddToDoList';
 import ToDo from '../component/toDo';
+import { SQLiteWrapper } from '../hpro-rn';
 
 export default class ScreenList extends React.Component {
     constructor(props) {
         super(props)
     }
-
+    state = {
+        adding: false,
+        list: []
+    }
+   _attStatList = async () => {
+        var resultSet = await SQLiteWrapper.executeSqlAsync('select * from htod');
+        this.setState({list: resultSet.rows._array})
+   }
+   componentDidMount = () => {
+        this._attStatList()
+   }
     _changeState = () => {
         this.setState({
             adding: !this.state.adding,
         })
     }
-
-    state = {
-        adding: false,
-        list: [
-            {
-                id: '1',
-                name: "andre",
-                checked: false,
-            },
-            {
-                id: '2',
-                name: "suellen",
-                checked: false,
-            }
-        ]
+    _changeChecked = async (id,checked) => {
+        const chk = (checked == 0)? 1 : 0
+        await SQLiteWrapper.executeSqlAsync(`update htod set checked = ${chk} where id = ${id}`)
+        this._attStatList();
     }
-    _changeChecked = (id,checked) => {
-        console.log(checked)
-        let list = this.state.list
-        list[id-1].checked = !checked
-        this.setState({
-            list: list,
-        })
-        // console.log(this.state.list)
-    }
-    _addToDo = (name) => {
-        let list = this.state.list
-        let nId = (list.length+1)
-        nId = JSON.stringify(nId)
-        let object = { name: name, id: nId}
-        console.log(nId)
-        list.push(object)
-        this.setState({ list: list })
+    _addToDo = async (name) => {
+        await SQLiteWrapper.executeSqlAsync('insert into htod (name, checked) values (?,?)',[name,0])
+        var resultSet = await SQLiteWrapper.executeSqlAsync('select * from htod');
+        console.log('as')
+        this.setState({list: resultSet.rows._array})
     }
     render() {
         return (
@@ -60,7 +48,7 @@ export default class ScreenList extends React.Component {
                                 _changeChecked={this._changeChecked.bind(this)}
                             />
                     }
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.id.toString()}
                 />
                 {
                     this.state.adding ?
@@ -71,7 +59,6 @@ export default class ScreenList extends React.Component {
                         :
                         null
                 }
-
                 <FAB
                     style={styles.fab}
                     icon="plus"
