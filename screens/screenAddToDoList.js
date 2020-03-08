@@ -3,10 +3,7 @@ import 'react-native-gesture-handler';
 import { TextInput, Portal } from 'react-native-paper'; 
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Animated } from 'react-native';
 import { SQLiteWrapper } from 'hpro-rn/';
-<<<<<<< HEAD
 import { DefaultTheme } from '@react-navigation/native';
-=======
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
 
 
 export default class AddToDoList extends React.Component {
@@ -45,11 +42,7 @@ export default class AddToDoList extends React.Component {
                             borderRadius: 5,
                             marginLeft: 10,
                             marginRight: 10,
-<<<<<<< HEAD
                             backgroundColor: '#4F6367',
-=======
-                            backgroundColor: '#6c757d',
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                         }}>
                         <View style={{flex:1}}>
                             <TextInput
@@ -60,11 +53,7 @@ export default class AddToDoList extends React.Component {
                             />
                         </View>
                         <TouchableOpacity style={styles.button} onPress={this._goBack}>
-<<<<<<< HEAD
                             <Text style={{color: 'white'}}>Adicionar</Text>
-=======
-                            <Text>Adicionar</Text>
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                         </TouchableOpacity>
                     </View>
                     </TouchableOpacity>
@@ -89,11 +78,7 @@ const styles = StyleSheet.create({
     },
     button: {
         height: 40,
-<<<<<<< HEAD
         backgroundColor: '#F55F55',
-=======
-        backgroundColor: '#fd7e14',
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5,

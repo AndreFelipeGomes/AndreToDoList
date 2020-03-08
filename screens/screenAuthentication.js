@@ -11,7 +11,6 @@ export default class Authentication extends React.Component {
     };
     componentDidMount = () => {
         this.createTable()
-<<<<<<< HEAD
     }
     createTable = async () => {
         await SQLiteWrapper.transactionAsync(transaction => {
@@ -32,28 +31,6 @@ export default class Authentication extends React.Component {
                     itemId: 86,
                     otherParam: 'anything you want here',
                 })
-=======
-     }
-     createTable = async () => {
-       await SQLiteWrapper.transactionAsync(transaction => {
-         transaction.executeSql('create table if not exists htod (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(100), checked integer default 0)');
-       })	
-     }
-     dropTable = async () => {
-        await SQLiteWrapper.transactionAsync(transaction => {
-          transaction.executeSql('drop table if exists htod');
-        })	
-        this.createTable()
-      }
-    _validAuth = () => {
-        
-        (this.state.user == 'A') ?
-            (this.state.password == 'A') ?
-                this.props.navigation.navigate('ScreenList',{
-                    itemId: 86,
-                    otherParam: 'anything you want here',
-                  })
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                 :
                 this.setState({ auth: false })
             :

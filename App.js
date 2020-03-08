@@ -10,11 +10,7 @@ import {Portal} from 'react-native-paper';
 export default class MyComponent extends React.Component {
   render() {
     const Stack = createStackNavigator();
-<<<<<<< HEAD
     xBackground = { backgroundColor: '#FE5F55'}
-=======
-    xBackground = { backgroundColor: '#fd7e14'}
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
 
     return (
       <NavigationContainer>
@@ -26,11 +22,7 @@ export default class MyComponent extends React.Component {
                 {
                   title: 'Authentication',
                   headerStyle: xBackground,
-<<<<<<< HEAD
                   headerTintColor: '#EEf5DB',
-=======
-                  headerTintColor: '#fff',
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                 }
               } />
               <Stack.Screen name="ScreenList"
@@ -39,11 +31,7 @@ export default class MyComponent extends React.Component {
                 {
                   title: 'ScreenList',
                   headerStyle: xBackground,
-<<<<<<< HEAD
                   headerTintColor: '#EEf5DB',
-=======
-                  headerTintColor: '#fff',
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                 }
               } />
               <Stack.Screen name="AddToDoList"
@@ -52,11 +40,7 @@ export default class MyComponent extends React.Component {
                 {
                   title: 'AddToDoList',
                   headerStyle: xBackground,
-<<<<<<< HEAD
                   headerTintColor: '#EEf5DB',
-=======
-                  headerTintColor: '#fff',
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                 }
               } />
           </Stack.Navigator>

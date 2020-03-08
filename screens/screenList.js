@@ -46,10 +46,7 @@ export default class ScreenList extends React.Component {
                             <ToDo 
                                 _item={item}
                                 _changeChecked={this._changeChecked.bind(this)}
-<<<<<<< HEAD
                                 _attStatList={this._attStatList.bind(this)}
-=======
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
                             />
                     }
                     keyExtractor={(item) => item.id.toString()}
@@ -78,35 +75,13 @@ export default class ScreenList extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-<<<<<<< HEAD
         backgroundColor: '#EEF5DB'
-=======
-        backgroundColor: 'rgb(34, 34, 34)'
-    },
-    item: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#343a40',
-        borderRadius: 5,
-        padding: 7,
-        marginVertical: 8,
-        marginHorizontal: 16,
-    },
-    title: {
-        fontSize: 22,
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
     },
     fab: {
         position: 'absolute',
         margin: 16,
         right: 0,
         bottom: 0,
-<<<<<<< HEAD
         backgroundColor: '#7A9E9F'
-=======
-        backgroundColor: 'orange'
->>>>>>> f6e547605ebe83656d7a6bee9420471b1a8cd94e
     },
 });
