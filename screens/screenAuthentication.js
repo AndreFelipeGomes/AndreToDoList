@@ -2,19 +2,35 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import 'react-native-gesture-handler';
 import { TextInput } from 'react-native-paper';
-
+import { SQLiteWrapper, delayedAlert, HProWS, formatCurrency } from '../hpro-rn';
 
 export default class Authentication extends React.Component {
     state = {
-        user: '',
-        password: '',
-        auth: false,
+        user: 'A',
+        password: 'A',
     };
-
+    componentDidMount = () => {
+        this.createTable()
+    }
+    createTable = async () => {
+        await SQLiteWrapper.transactionAsync(transaction => {
+            transaction.executeSql('create table if not exists htod (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(100), checked integer default 0)');
+        })
+    }
+    dropTable = async () => {
+        await SQLiteWrapper.transactionAsync(transaction => {
+            transaction.executeSql('drop table if exists htod');
+        })
+        this.createTable()
+    }
     _validAuth = () => {
-        (this.state.user == 'ANDRE') ?
-            (this.state.password == '123') ?
-                navigation.navigate('ScreenList')
+
+        (this.state.user == 'A') ?
+            (this.state.password == 'A') ?
+                this.props.navigation.navigate('ScreenList', {
+                    itemId: 86,
+                    otherParam: 'anything you want here',
+                })
                 :
                 this.setState({ auth: false })
             :
@@ -23,14 +39,6 @@ export default class Authentication extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: 5,
-                    backgroundColor: (this.state.auth) ? "green" : "red",
-                }}>
-                    <Text>{JSON.stringify(this.state.auth)}</Text>
-                </View>
                 <TextInput
                     style={styles.textInput}
                     label='Usuario'
@@ -46,15 +54,16 @@ export default class Authentication extends React.Component {
                 <TouchableOpacity style={styles.button} onPress={this._validAuth}>
                     <Text>LOGIN</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={this.dropTable}>
+                    <Text>DropDataBase</Text>
+                </TouchableOpacity>
             </View>
         );
     }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         justifyContent: 'center',
         backgroundColor: 'rgb(34, 34, 34)',
     },
@@ -67,6 +76,7 @@ const styles = StyleSheet.create({
         margin: 5,
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 5,
     },
     textButton: {
         color: 'red'
