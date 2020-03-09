@@ -2,8 +2,6 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { TextInput, Portal } from 'react-native-paper'; 
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Animated } from 'react-native';
-import { SQLiteWrapper } from 'hpro-rn/';
-import { DefaultTheme } from '@react-navigation/native';
 
 
 export default class AddToDoList extends React.Component {

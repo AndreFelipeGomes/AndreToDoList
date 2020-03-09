@@ -126,7 +126,7 @@ export default class ToDo extends React.Component {
                     icon="camera"
                     color='#B8D8D8'
                     size={30}
-                    onPress={() => null}
+                    onPress={() => console.log(this.props._thisProps.navigation.navigate('Camera', { id : this.props._item.id }))}
                     key={this.props._item.id}
                 />
                 <Animated.View style={{

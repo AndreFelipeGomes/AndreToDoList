@@ -47,6 +47,7 @@ export default class ScreenList extends React.Component {
                                 _item={item}
                                 _changeChecked={this._changeChecked.bind(this)}
                                 _attStatList={this._attStatList.bind(this)}
+                                _thisProps={this.props}
                             />
                     }
                     keyExtractor={(item) => item.id.toString()}
